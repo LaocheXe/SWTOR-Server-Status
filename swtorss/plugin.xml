@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e107Plugin name="SWTOR Server Status" lan="LAN_SWTOR_SS_PNAME" version="1.0" date="2015-07-06" compatibility="2.0" installRequired="true" >
+	<author name="LaocheXe" url="http://defiantz.org" />
+	<summary lan="">This is a simple SWTOR Server Status Catcher</summary>
+	<description lan="">This is a Star Wars The Old Republic Server Status Plugin that uses cache of the servers</description>
+	<keywords>
+		<word>swtor</word>
+		<word>status</word>
+	</keywords>
+	<category>tools</category>
+	<copyright>GNU General Public License v2</copyright>
+	<adminLinks>
+		<link url="admin_config.php" description="" icon="images/icon_32.png" iconSmall="images/icon_16.png" primary="true" >LAN_CONFIGURE</link>
+	</adminLinks>
+	<pluginPrefs>
+		<pref name='server'>prophecy of the five</pref>
+		<pref name='url'>http://www.swtor.com/server-status</pref>
+		<pref name='cache_file_name'>server-status-cache.html</pref>
+		<pref name='cache_time_life'>300</pref>
+	</pluginPrefs>
+</e107Plugin>
