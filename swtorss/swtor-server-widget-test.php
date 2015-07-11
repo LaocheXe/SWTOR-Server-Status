@@ -48,7 +48,7 @@ $cache_time_life = '300';//seconds to cache file
 include_once('simple_html_dom.php');
 
 /* full path is important because you can use this somewhere else */
-$fullpathlocalfile = e_PLUGIN."/swtorss/".$cache_file_name;
+$fullpathlocalfile = e_PLUGIN."swtorss/".$cache_file_name;
 
 /* THIS IS ONLY VERSION FOR LOCAL FILE - TESTING PURPOSE */
 if (file_exists($fullpathlocalfile))   {
