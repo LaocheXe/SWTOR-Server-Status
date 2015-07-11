@@ -47,17 +47,26 @@ $cache_time_life = '300';//seconds to cache file
 
 include_once('simple_html_dom.php');
 
-$data = new simple_html_dom();
+/* full path is important because you can use this somewhere else */
+$cache_file_name = e_PLUGIN."swtorss/".$cache_file_name; 
 
 //Check to see if cache file exists. if it doesn't exist or we've exceed the cache life length, get fresh data from the source
 //else, load it from the cached file
 if( !(file_exists($cache_file_name)) || time() - filemtime($cache_file_name) >= $cache_time_life ) {
-    $data->load_file($url);
-    $data->save($cache_file_name);
+    file_put_contents($cache_file_name, file_get_contents($pref_url));      
+    $data = file_get_html($cache_file_name);
+    if(!$data)  {  	     //todo insert e107 error handling
+      print_a(" Couldn't read server file with path".$pref_url); 
+      die;
+     }
 }
 else{
-    $data->load_file($cache_file_name);
-}
+    $data = file_get_html($cache_file_name);
+    if(!$data)  {  	     //todo insert e107 error handling
+      print_a(" Couldn't read local file with path".$fullpathlocalfile); 
+      die;
+ }    
+
     
 
 //Grab the div for this server on server status page.
