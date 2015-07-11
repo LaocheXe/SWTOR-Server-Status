@@ -2,7 +2,7 @@
 
 
 if (defined('e107_INIT')) { exit; }
-//require_once('../../class2.php');
+require_once('../../class2.php');
 
 //require_once('../../e107_config.php');
 
@@ -47,18 +47,31 @@ $cache_time_life = '300';//seconds to cache file
 
 include_once('simple_html_dom.php');
 
-$data = new simple_html_dom();
+/* full path is important because you can use this somewhere else */
+$fullpathlocalfile = e_PLUGIN."/swtorss/".$cache_file_name;
 
+/* THIS IS ONLY VERSION FOR LOCAL FILE - TESTING PURPOSE */
+if (file_exists($fullpathlocalfile))   {
+  $data = file_get_html($fullpathlocalfile);
+  if(!$data)  {  	     //todo insert e107 error handling
+    print_a("Couldn't read local file with path".$fullpathlocalfile); 
+    die;
+   }
+}
+{
+ /*  Comming soon */
+}
+ 
+     /*
 //Check to see if cache file exists. if it doesn't exist or we've exceed the cache life length, get fresh data from the source
 //else, load it from the cached file
 if( !(file_exists($cache_file_name)) || time() - filemtime($cache_file_name) >= $cache_time_life ) {
     $data->load_file($url);
-    $data->save($cache_file_name);
+   // $data->save($cache_file_name);
 }
 else{
     $data->load_file($cache_file_name);
-}
-    
+}   */
 
 //Grab the div for this server on server status page.
 $serverElm = $data->find("div[data-name=$serverName]", 0);
