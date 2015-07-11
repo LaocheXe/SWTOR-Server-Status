@@ -49,9 +49,9 @@ include_once('simple_html_dom.php');
 
 /* full path is important because you can use this somewhere else */
 $fullpathlocalfile = e_PLUGIN."swtorss/".$cache_file_name;
-
+$local_testing = FALSE;
 /* THIS IS ONLY VERSION FOR LOCAL FILE - TESTING PURPOSE */
-if (file_exists($fullpathlocalfile))   {
+if (file_exists($fullpathlocalfile) AND $local_testing)   {
   $data = file_get_html($fullpathlocalfile);
   if(!$data)  {  	     //todo insert e107 error handling
     print_a("Couldn't read local file with path".$fullpathlocalfile); 
@@ -59,7 +59,13 @@ if (file_exists($fullpathlocalfile))   {
    }
 }
 {
- /*  Comming soon */
+/* THIS IS DIRECT ACCESS TO SERVER - there could be problem with cross domains rules,  maybe... */
+/* no saving file yet to solve frequency*/
+ $data = file_get_html($pref_url);
+  if(!$data)  {  	     //todo insert e107 error handling
+    print_a(" Couldn't read server file with path ". $pref_url); 
+    die;
+  }  
 }
  
      /*
