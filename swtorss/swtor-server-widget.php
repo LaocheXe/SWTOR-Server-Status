@@ -60,10 +60,11 @@ switch($serverElm->getAttribute('data-population')){ //1,2,3,4,5
 }
 
 ?>
+<link rel="stylesheet" type="text/css" href="swtorss.css">
 <div id="swtor-serverStatus-widget">
-    <div class="container">
-        <div class="name"><?php echo $server["name"] .' ('.$server["type"].', '.$server["timezone"].')';?></div>
-        <div class="status <?php echo $server["status"];?>"><strong>Status:</strong> <?php echo $server["status"];?></div>
-	<div class="population"><strong>Population:</strong> <?php echo $server["population"];?></div>
+    <div class="container-swtorss">
+        <div class="name-swtorss"><?php echo $server["name"] .' ('.$server["type"].', '.$server["timezone"].')';?></div>
+        <div class="status-swtorss <?php echo $server["status"];?>"><strong>Status:</strong> <?php echo $server["status"];?></div>
+	<div class="population-swtorss"><strong>Population:</strong> <?php echo $server["population"];?></div>
     </div>
 </div>

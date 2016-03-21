@@ -40,6 +40,7 @@ define("LAN_SWTOR_SS_HELP_CFN", "File Name that is being saved to the webserver 
 define("LAN_SWTOR_SS_HELP_CTL", "How many seconds before it checks again - Check out Information for help");
 // Info Area
 define("LAN_SWTORSS_INFO_NAME", "Information");
+define("LAN_SWTORSS_FRONT", "Admin Home");
 define("LAN_EXE_INFO_AIN", "Author Information");
 define("LAN_EXE_INFO_PIN", "Plugin Information");
 define("LAN_EXE_INFO_01", "Created By:");
@@ -59,4 +60,11 @@ define("LAN_SWTORSS_EULIST", "EU:");
 define("LAN_CRD_CREDITS", "Credits");
 define("LAN_CRD_DANKRAUS", "Thanks to <a href='http://dskraus.com' target=_'blank'>dankraus</a>");
 define("LAN_CRD_DANKRAUS_INFO", "For providing the SWTOR Server Status Widget - <a href='https://github.com/dankraus/Star-Wars-The-Old-Republic-Server-Status-Widget' target='_blank'>GitHub Page</a>");
+define("LAN_CRD_JIMAKO", "Thanks to <a href='https://github.com/Jimmi08' target=_'blank'>Jimako</a>");
+define("LAN_CRD_JIMAKO_INFO", "For helping me with this plugin by tweaking the code to work properly in e107!");
+// Admin Home Section
+define("LAN_EXE_INFO_SSU", "ShortCodes to Use");
+define("LAN_EXE_INFO_SSU01", "For the default look:");
+define("LAN_EXE_INFO_SSU02", "For the center default look:");
+define("LAN_EXE_INFO_SSU03", "For the arrow only:");
 ?>

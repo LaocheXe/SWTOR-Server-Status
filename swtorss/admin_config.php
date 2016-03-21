@@ -27,7 +27,8 @@ class swtorss_adminArea extends e_admin_dispatcher
 	
 	
 	protected $adminMenu = array(
-			
+		
+		'main/front'		=> array('caption'=> LAN_SWTORSS_FRONT, 'perm' => 'P'),
 		'main/prefs' 		=> array('caption'=> LAN_PREFS, 'perm' => 'P'),	
 		'main/info'			=> array('caption'=> LAN_SWTORSS_INFO_NAME, 'perm' => 'P')
 		// 'main/custom'		=> array('caption'=> 'Custom Page', 'perm' => 'P')
@@ -39,10 +40,6 @@ class swtorss_adminArea extends e_admin_dispatcher
 	
 	protected $menuTitle = 'swtorss';
 }
-
-
-
-
 				
 class swtorss_ui extends e_admin_ui
 {
@@ -61,13 +58,51 @@ class swtorss_ui extends e_admin_ui
 		
 	//	protected $listQry      	= "SELECT * FROM `#tableName` WHERE field != '' "; // Example Custom Query. LEFT JOINS allowed. Should be without any Order or Limit.
 	
-		protected $listOrder		= ' DESC';
+	//	protected $listOrder		= ' DESC';
 	
 		protected $fields 		= NULL;		
 		
 		protected $fieldpref = array();
 		
 
+
+		public function frontPage()
+		{
+			$ns = e107::getRender();
+			$text = '<center><img src="images/icon_32.png" width="32" height="32"></center>
+			<br /><br />
+			<table>
+			<tr>
+			<th><font size="+1"><u>'.LAN_EXE_INFO_SSU.'</u></font></th>
+			</tr>
+			<tbody>
+			<tr>
+			<td align="right">'.LAN_EXE_INFO_SSU01.'</td>
+			<td> </td>
+			<td align="left">{SWTORSS_EXE}</td>
+			</tr>
+			<tr>
+			<td align="right">'.LAN_EXE_INFO_SSU02.'</td>
+			<td> </td>
+			<td align="left">{SWTORSS_CENTER_EXE}</td>
+			</tr>
+			<tr>
+			<td align="right">'.LAN_EXE_INFO_SSU03.'</td>
+			<td> </td>
+			<td align="left">{SWTORSS_ARROW_EXE}</td>
+			</tr>
+			</tbody>
+			</table>
+			<br /><br />
+			<table align="center">
+			<tfoot>
+			</tfoot>
+			</table>
+			';
+			$ns->tablerender($text);	
+			
+		}
+		
 	//	protected $preftabs        = array('General', 'Other' );
 		protected $prefs = array(
 			'server'		=> array('title'=> LAN_SWTOR_SS_SNAME, 'tab'=>0, 'type'=>'text', 'data' => 'str', 'help'=>LAN_SWTOR_SS_HELP_SNAME),
@@ -121,7 +156,7 @@ class swtorss_ui extends e_admin_ui
 		public function infoPage()
 		{	
 			$ns = e107::getRender();
-			$text = '<center><img src="images/swtorLogo.png" width="100" height="100"></center>
+			$text = '<center><img src="images/icon_32.png" width="32" height="32"></center>
 			<br /><br />
 			<table>
 			<tr>
@@ -268,6 +303,12 @@ class swtorss_ui extends e_admin_ui
 			<th><font size="+1"><u>'.LAN_CRD_CREDITS.'</u></font></th>
 			</tr>
 			<tr>
+			<td align="right"><b>'.LAN_CRD_JIMAKO.'</b></td>
+			<td> </td>
+			<td align="left">'.LAN_CRD_JIMAKO_INFO.'</td>
+			<td> </td>
+			</tr>
+			<tr>
 			<td align="right"><b>'.LAN_CRD_DANKRAUS.'</b></td>
 			<td> </td>
 			<td align="left">'.LAN_CRD_DANKRAUS_INFO.'</td>
@@ -294,7 +335,7 @@ class swtorss_ui extends e_admin_ui
 			</tfoot>
 			</table>
 			';
-			$ns->tablerender(LAN_SWTORSS_INFO_NAME,$text);	
+			$ns->tablerender($text);	
 			
 		}	
 	/*	

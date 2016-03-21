@@ -2,7 +2,7 @@
 
 
 if (defined('e107_INIT')) { exit; }
-//require_once('../../class2.php');
+require_once('../../class2.php');
 
 //require_once('../../e107_config.php');
 
@@ -47,18 +47,37 @@ $cache_time_life = '300';//seconds to cache file
 
 include_once('simple_html_dom.php');
 
-$data = new simple_html_dom();
-
+/* full path is important because you can use this somewhere else */
+$fullpathlocalfile = e_PLUGIN."swtorss/cache/".$cache_file_name;
+$local_testing = FALSE;
+/* THIS IS ONLY VERSION FOR LOCAL FILE - TESTING PURPOSE */
+if (file_exists($fullpathlocalfile) AND $local_testing)   {
+  $data = file_get_html($fullpathlocalfile);
+  if(!$data)  {  	     //todo insert e107 error handling
+    print_a("Couldn't read local file with path".$fullpathlocalfile); 
+    die;
+   }
+}
+{
+/* THIS IS DIRECT ACCESS TO SERVER - there could be problem with cross domains rules,  maybe... */
+/* no saving file yet to solve frequency*/
+ $data = file_get_html($pref_url);
+  if(!$data)  {  	     //todo insert e107 error handling
+    print_a(LAN_SWTOR_SS_READERROR. $pref_url); 
+    die;
+  }  
+}
+ 
+     /*
 //Check to see if cache file exists. if it doesn't exist or we've exceed the cache life length, get fresh data from the source
 //else, load it from the cached file
 if( !(file_exists($cache_file_name)) || time() - filemtime($cache_file_name) >= $cache_time_life ) {
     $data->load_file($url);
-    $data->save($cache_file_name);
+   // $data->save($cache_file_name);
 }
 else{
     $data->load_file($cache_file_name);
-}
-    
+}   */
 
 //Grab the div for this server on server status page.
 $serverElm = $data->find("div[data-name=$serverName]", 0);
@@ -69,19 +88,24 @@ $server["type"] = $serverElm->getAttribute('data-type');  //type - PVP, PVE etc
 $server["timezone"] = $serverElm->getAttribute('data-timezone'); //timezone - east, west
 switch($serverElm->getAttribute('data-population')){ //1,2,3,4,5
     case '1':
-        $server["population"] = 'Light';
+        //$server["population"] = 'Light';
+		$server["population"] = LAN_SWTOR_SS_PLIGHT;
         break;
     case '2':
-        $server["population"] = 'Standard';
+        //$server["population"] = 'Standard';
+		$server["population"] = LAN_SWTOR_SS_PSTANDARD;
         break;
     case '3':
-        $server["population"] = 'Heavy';
+        //$server["population"] = 'Heavy';
+		$server["population"] = LAN_SWTOR_SS_PHEAVY;
         break;
     case '4':
-        $server["population"] = 'Very Heavy';
+        //$server["population"] = 'Very Heavy';
+		$server["population"] = LAN_SWTOR_SS_PVHEAVY;
         break;
     case '5':
-        $server["population"] = 'Full';
+        //$server["population"] = 'Full';
+		$server["population"] = LAN_SWTOR_SS_PFULL;
         break;
     
 }
